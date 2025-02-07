@@ -1,6 +1,6 @@
 [org 0x0100]
 jmp start
-
+;all variables or lables declarations is there
 lengthPl:	dw 5 
 counter:	dd 0
 gameName:	db 'Welcome to Ping Pong Game'
@@ -388,16 +388,16 @@ printScore:	mov dx, 196
 			push dx
 			mov dx, [score1]
 			push dx 
-			call printNum
+			call printNum      ;printing thr score of player 1
 			
 			mov dx, 356
 			push dx
 			mov dx, [score2]
 			push dx
-			call printNum
+			call printNum       ;printingg the score of player 2
 			
 			mov dx, 0x0C23
-			mov cx, 13
+			mov cx, 13          ;name of player length
 			push cs
 			pop es 
 			mov bp, gameOver
@@ -438,7 +438,7 @@ printNum:	        push bp
 						add di, 2 
 						loop nextpos    
 
-			pop di 
+			pop di  ;pop out back all the registers
 			pop dx 
 			pop cx 
 			pop bx 
@@ -447,7 +447,7 @@ printNum:	        push bp
 			pop bp 
 			ret 8			
 
-; Delaying movement of players			
+; Delaying movement of players			         ;delay to increase or decrease the spaeed of ball
 delay:		mov dword[counter], 10000 
 
 incCounter:	dec dword[counter] 
@@ -497,7 +497,7 @@ printPlayer:            mov [es:si], ax ; PLayer 1
 			call ballMovementDiagonallyDown1
 
 ;End Program					
-endG:		        pop di
+endG:		        pop di          ;again pop back all the registers in reverse order
 			pop si
 			pop dx
 			pop cx
